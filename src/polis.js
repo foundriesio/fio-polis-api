@@ -18,10 +18,23 @@ export class Polis extends Remote {
 
 /**
  * Prepare the options for the request.
- * @returns {Promise}
+ * @param {Object} user The user performing the request.
+ * @param {Boolean} hasData If the request is sending data, defaults to false.
+ * @returns {Promise} Resolve to an Object.
  */
-Polis.prototype.prepare = async function () {
-  return null;
+Polis.prototype.prepare = async function (user, hasData = false) {
+  const options = {
+    rejectUnauthorized: false,
+    followRedirects: this.follows,
+    secureProtocol: 'TLSv1_2_method',
+    headers: {},
+  };
+
+  if (hasData) {
+    options.headers['Content-Type'] = this.contentType;
+  }
+
+  return options;
 };
 
 /**
