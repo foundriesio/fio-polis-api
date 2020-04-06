@@ -45,7 +45,7 @@
     "webpack-cli": "^3.3.11"
   },
   "dependencies": {
-    "bluebird": "^3.7.2",
-    "request-promise": "github:foundriesio/request-promise"
+    "@foundriesio/request": "^1.0.2",
+    "bluebird": "^3.7.2"
   }
 }
