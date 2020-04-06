@@ -15,7 +15,7 @@
   ],
   "scripts": {
     "prebuild": "rimraf dist",
-    "prepublish": "npm run build",
+    "prepare": "npm run build",
     "build": "NODE_ENV=production webpack --progress",
     "build:test": "NODE_ENV=test webpack --display none",
     "lint": "prettier *.md *.js ./src/*.js ./src/**/*.js  --write",
