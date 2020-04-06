@@ -8,6 +8,8 @@ You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2
 
 import url from 'url';
 
+import { request, queryfy } from '@foundriesio/request';
+
 class Remote {
   constructor(uri) {
     this.uri = uri;
@@ -17,7 +19,6 @@ class Remote {
     };
     this.headers = {};
     this.hasTrailingSlash = true;
-    this.request = require('request-promise');
   }
 }
 
@@ -57,7 +58,7 @@ Remote.prototype.href = function (path, query) {
   }
 
   if (query) {
-    const searchParams = new url.URLSearchParams(query);
+    const searchParams = new url.URLSearchParams(queryfy(query));
     reqUrl.search = searchParams.toString();
   }
 
@@ -91,7 +92,7 @@ Remote.prototype.serialize = function (data) {
  * @returns {Promise}
  */
 Remote.prototype.get = async function (path, query, options) {
-  return this.request.get(this.href(path, query), await this.config(options));
+  return request.get(this.href(path, query), await this.config(options));
 };
 
 /**
@@ -99,7 +100,7 @@ Remote.prototype.get = async function (path, query, options) {
  * @returns {Promise}
  */
 Remote.prototype.post = async function (data, path, query, options) {
-  return this.request.post(
+  return request.post(
     this.href(path, query),
     this.serialize(data),
     await this.config(options)
@@ -111,7 +112,7 @@ Remote.prototype.post = async function (data, path, query, options) {
  * @returns {Promise}
  */
 Remote.prototype.put = async function (data, path, query, options) {
-  return this.request.put(
+  return request.put(
     this.href(path, query),
     this.serialize(data),
     await this.config(options)
@@ -123,7 +124,7 @@ Remote.prototype.put = async function (data, path, query, options) {
  * @returns {Promise}
  */
 Remote.prototype.delete = async function (path, query, options) {
-  return this.request.delete(
+  return request.delete(
     this.href(path, query),
     await this.config(options)
   );
@@ -133,8 +134,8 @@ Remote.prototype.delete = async function (path, query, options) {
  * Perform a PATCH request.
  * @returns {Promise}
  */
-Remote.prototype.patch = async function (data, path, query, options) {
-  return this.request.patch(
+Remote.prototype.delete = async function (data, path, query, options) {
+  return request.patch(
     this.href(path, query),
     this.serialize(data),
     await this.config(options)
@@ -146,7 +147,7 @@ Remote.prototype.patch = async function (data, path, query, options) {
  * @returns {Promise}
  */
 Remote.prototype.head = async function (path, query, options) {
-  return this.request.head(this.href(path, query), await this.config(options));
+  return request.get(this.href(path, query), await this.config(options));
 };
 
 export default Remote;
