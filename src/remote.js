@@ -124,10 +124,7 @@ Remote.prototype.put = async function (data, path, query, options) {
  * @returns {Promise}
  */
 Remote.prototype.delete = async function (path, query, options) {
-  return request.delete(
-    this.href(path, query),
-    await this.config(options)
-  );
+  return request.delete(this.href(path, query), await this.config(options));
 };
 
 /**
