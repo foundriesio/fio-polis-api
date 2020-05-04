@@ -91,13 +91,13 @@ Polis.prototype.create = async function ({ user, data, path, query }) {
  *
  * @param {Object} user The user performing the action.
  * @param {Object} data The data to send.
- * @param {String} path The path on the server where to perform the action.
+ * @param {String} id The id of the resource to update.
  * @param {Object} query Query/Search parameters.
  * @returns {Promise}
  */
-Polis.prototype.update = async function ({ user, data, path, query }) {
+Polis.prototype.update = async function ({ user, data, id, query }) {
   return createResponse(
-    this.patch(data, path, query, await this.prepare(user, true))
+    this.patch(data, id, query, await this.prepare(user, true))
   );
 };
 
@@ -105,12 +105,12 @@ Polis.prototype.update = async function ({ user, data, path, query }) {
  * Remove a resource on the server.
  *
  * @param {Object} user The user performing the action.
- * @param {String} path The path on the server where to perform the action.
+ * @param {String} id The id of the resource to remove.
  * @param {Object} query Query/Search parameters.
  * @returns {Promise}
  */
-Polis.prototype.remove = async function ({ user, path, query }) {
-  return createResponse(this.delete(path, query, await this.prepare(user)));
+Polis.prototype.remove = async function ({ user, id, query }) {
+  return createResponse(this.delete(id, query, await this.prepare(user)));
 };
 
 export default Polis;
