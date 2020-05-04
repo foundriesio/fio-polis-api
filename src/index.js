@@ -7,6 +7,7 @@ You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2
 */
 
 import auth from './auth';
+import billing from './billing';
 import createresponse from './response';
 import factories from './factories';
 import members from './members';
@@ -14,6 +15,7 @@ import subscriptions from './subscriptions';
 import users from './users';
 
 export const Auth = auth;
+export const Billing = billing;
 export const createResponse = createresponse;
 export const Factories = factories;
 export const Members = members;
