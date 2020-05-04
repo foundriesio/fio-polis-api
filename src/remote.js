@@ -131,7 +131,7 @@ Remote.prototype.delete = async function (path, query, options) {
  * Perform a PATCH request.
  * @returns {Promise}
  */
-Remote.prototype.delete = async function (data, path, query, options) {
+Remote.prototype.patch = async function (data, path, query, options) {
   return request.patch(
     this.href(path, query),
     this.serialize(data),
