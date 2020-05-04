@@ -10,6 +10,7 @@ import auth from './auth';
 import createresponse from './response';
 import factories from './factories';
 import members from './members';
+import subscriptions from './subscriptions';
 import users from './users';
 
 export const Auth = auth;
@@ -17,4 +18,5 @@ export const createResponse = createresponse;
 export const Factories = factories;
 export const Members = members;
 export const Organizations = factories;
+export const Subscriptions = subscriptions;
 export const Users = users;
