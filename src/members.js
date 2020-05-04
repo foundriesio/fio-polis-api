@@ -37,7 +37,7 @@ Members.prototype.add = async function ({ user, oid, uid, query, data }) {
       data,
       `${oid}/${membersPath}/${uid}`,
       query,
-      await this.prepare(user)
+      await this.prepare(user, true)
     )
   );
 };
@@ -60,7 +60,7 @@ Members.prototype.update = async function ({ user, oid, mid, data, query }) {
       data,
       `${oid}/${membersPath}/${mid}`,
       query,
-      await this.prepare(user)
+      await this.prepare(user, true)
     )
   );
 };
