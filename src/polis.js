@@ -109,8 +109,8 @@ Polis.prototype.update = async function ({ user, data, id, query }) {
  * @param {Object} query Query/Search parameters.
  * @returns {Promise}
  */
-Polis.prototype.remove = async function ({ user, id, query }) {
-  return createResponse(this.delete(id, query, await this.prepare(user)));
+Polis.prototype.remove = async function ({ user, path, query }) {
+  return createResponse(this.delete(path, query, await this.prepare(user)));
 };
 
 export default Polis;
