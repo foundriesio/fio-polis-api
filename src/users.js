@@ -28,6 +28,18 @@ Users.prototype.findApiTokens = async function ({ uid, query, user }) {
 };
 
 /**
+ * Retrieve all api tokens of a user.
+ * @param {Object} options
+ * @param {String} options.uid - The user id.
+ * @param {String} options.tid - The token id.
+ * @param {Object} options.query - Query object for the request.
+ * @param {Object} options.user - The user performing the request.
+ */
+Users.prototype.findApiTokenById = async function ({ uid, tid, query, user }) {
+  return this.find({ path: `${uid}/api_tokens/${tid}`, query, user });
+};
+
+/**
  * Create a new api token for a user.
  * @param {Object} options
  * @param {String} options.uid - The user id.
