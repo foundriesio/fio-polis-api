@@ -91,13 +91,13 @@ Polis.prototype.create = async function ({ user, data, path, query }) {
  *
  * @param {Object} user The user performing the action.
  * @param {Object} data The data to send.
- * @param {String} id The id of the resource to update.
+ * @param {String} path The resource path to update.
  * @param {Object} query Query/Search parameters.
  * @returns {Promise}
  */
-Polis.prototype.update = async function ({ user, data, id, query }) {
+Polis.prototype.update = async function ({ user, data, path, query }) {
   return createResponse(
-    this.patch(data, id, query, await this.prepare(user, true))
+    this.patch(data, path, query, await this.prepare(user, true))
   );
 };
 
