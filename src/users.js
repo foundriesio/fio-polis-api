@@ -100,16 +100,15 @@ Users.prototype.findClientCredentialsById = async function ({ uid, cid, query, u
 };
 
 /**
- * Retrieve a client credentials of a user by its id.
+ * Create a new client credentials for a user.
  * @param {Object} options
  * @param {String} options.uid - The user id.
- * @param {String} options.cid - The credentials id.
  * @param {Object} options.data - The payload to send.
  * @param {Object} options.query - Query object for the request.
  * @param {Object} options.user - The user performing the request.
  */
-Users.prototype.createClientCredentials = async function ({ uid, cid, data, query, user }) {
-  return this.create({ path: `${uid}/client_credentials/${cid}`, data, query, user });
+Users.prototype.createClientCredentials = async function ({ uid, data, query, user }) {
+  return this.create({ path: `${uid}/client_credentials/`, data, query, user });
 };
 
 /**
