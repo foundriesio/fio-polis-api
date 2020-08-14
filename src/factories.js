@@ -16,4 +16,18 @@ export class Factories extends Polis {
   }
 }
 
+/**
+ * Update a factory billing object.
+ * @param {Object} options
+ * @param {String} options.uid - The user id.
+ * @param {String} options.bid - The billing id.
+ * @param {Object} options.data - The payload to send.
+ * @param {Object} options.query - Query object for the request.
+ * @param {Object} options.user - The user performing the request.
+ */
+Factories.prototype.updateBilling = async function ({ oid, bid, data, query, user }) {
+  return this.update({ path: `${oid}/billing/${bid}`, data, query, user });
+};
+
+
 export default Factories;
