@@ -13,6 +13,7 @@ import factories from './factories';
 import members from './members';
 import subscriptions from './subscriptions';
 import users from './users';
+import invites from './invites';
 
 export const Auth = auth;
 export const Billing = billing;
@@ -22,3 +23,4 @@ export const Members = members;
 export const Organizations = factories;
 export const Subscriptions = subscriptions;
 export const Users = users;
+export const Invites = invites;
