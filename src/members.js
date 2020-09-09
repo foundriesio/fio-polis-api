@@ -56,7 +56,13 @@ Members.prototype.removeAll = async function ({ user, oid, query }) {
 
 Members.prototype.update = async function ({ user, oid, mid, data, query }) {
   return createResponse(
-    this.patch(data, `${oid}/${membersPath}/${mid}`, query, await this.prepare(user, true)));
+    this.patch(
+      data,
+      `${oid}/${membersPath}/${mid}`,
+      query,
+      await this.prepare(user, true)
+    )
+  );
 };
 
 export default Members;

@@ -24,7 +24,7 @@ export class Users extends Polis {
  * @param {Object} options.user - The user performing the request.
  */
 Users.prototype.findApiTokens = async function ({ uid, query, user }) {
-  return this.find({path: `${uid}/api_tokens/`, query, user});
+  return this.find({ path: `${uid}/api_tokens/`, query, user });
 };
 
 /**
@@ -60,7 +60,13 @@ Users.prototype.createApiToken = async function ({ uid, data, query, user }) {
  * @param {Object} options.query - Query object for the request.
  * @param {Object} options.user - The user performing the request.
  */
-Users.prototype.updateApiToken = async function ({ uid, tid, data, query, user }) {
+Users.prototype.updateApiToken = async function ({
+  uid,
+  tid,
+  data,
+  query,
+  user,
+}) {
   return this.update({ path: `${uid}/api_tokens/${tid}`, data, query, user });
 };
 
@@ -95,7 +101,12 @@ Users.prototype.findClientCredentials = async function ({ uid, query, user }) {
  * @param {Object} options.query - Query object for the request.
  * @param {Object} options.user - The user performing the request.
  */
-Users.prototype.findClientCredentialsById = async function ({ uid, cid, query, user }) {
+Users.prototype.findClientCredentialsById = async function ({
+  uid,
+  cid,
+  query,
+  user,
+}) {
   return this.find({ path: `${uid}/client_credentials/${cid}`, query, user });
 };
 
@@ -107,7 +118,12 @@ Users.prototype.findClientCredentialsById = async function ({ uid, cid, query, u
  * @param {Object} options.query - Query object for the request.
  * @param {Object} options.user - The user performing the request.
  */
-Users.prototype.createClientCredentials = async function ({ uid, data, query, user }) {
+Users.prototype.createClientCredentials = async function ({
+  uid,
+  data,
+  query,
+  user,
+}) {
   return this.create({ path: `${uid}/client_credentials/`, data, query, user });
 };
 
@@ -120,8 +136,19 @@ Users.prototype.createClientCredentials = async function ({ uid, data, query, us
  * @param {Object} options.query - Query object for the request.
  * @param {Object} options.user - The user performing the request.
  */
-Users.prototype.updateClientCredentials = async function ({ uid, cid, data, query, user }) {
-  return this.update({ path: `${uid}/client_credentials/${cid}`, data, query, user });
+Users.prototype.updateClientCredentials = async function ({
+  uid,
+  cid,
+  data,
+  query,
+  user,
+}) {
+  return this.update({
+    path: `${uid}/client_credentials/${cid}`,
+    data,
+    query,
+    user,
+  });
 };
 
 /**
@@ -132,7 +159,12 @@ Users.prototype.updateClientCredentials = async function ({ uid, cid, data, quer
  * @param {Object} options.query - Query object for the request.
  * @param {Object} options.user - The user performing the request.
  */
-Users.prototype.deleteClientCredentials = async function ({ uid, cid, query, user }) {
+Users.prototype.deleteClientCredentials = async function ({
+  uid,
+  cid,
+  query,
+  user,
+}) {
   return this.remove({ path: `${uid}/client_credentials/${cid}`, query, user });
 };
 
