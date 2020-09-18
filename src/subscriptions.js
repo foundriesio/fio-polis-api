@@ -9,7 +9,7 @@ import url from 'url';
 
 import Polis from './polis';
 
-class Subscriptions extends Polis {
+export class Subscriptions extends Polis {
   constructor(baseUrl) {
     const uri = new url.URL('/subscriptions/', baseUrl);
     super(uri.href);
