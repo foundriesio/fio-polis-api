@@ -8,10 +8,11 @@ You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2
 
 export * from './auth';
 export * from './billing';
-export * from './response';
+export * from './device-authorization';
+export * from './email-verify';
 export * from './factories';
+export * from './invites';
 export * from './members';
+export * from './response';
 export * from './subscriptions';
 export * from './users';
-export * from './invites';
-export * from './device-authorization';
