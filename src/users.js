@@ -168,4 +168,42 @@ Users.prototype.deleteClientCredentials = async function ({
   return this.remove({ path: `${uid}/client_credentials/${cid}`, query, user });
 };
 
+/**
+ * Create a password reset link for a user.
+ * @param {Object} options
+ * @param {String} options.uid - The user id.
+ * @param {Object} [options.user] - The user performing the request.
+ */
+Users.prototype.resetPassword = async function ({ uid, user }) {
+  return this.create({ path: `${uid}/pwd_reset/`, user });
+};
+
+/**
+ * Update a password reset for a user.
+ * @param {Object} options
+ * @param {String} options.uid - The user id.
+ * @param {String} options.rid - The password reset id.
+ * @param {Object} options.data - The data to send.
+ * @param {Object} [options.user] - The user performing the request.
+ */
+Users.prototype.updateResetPassword = async function ({
+  uid,
+  rid,
+  user,
+  data,
+}) {
+  return this.update({ path: `${uid}/pwd_reset/${rid}`, data, user });
+};
+
+/**
+ * Remove a password reset for a user.
+ * @param {Object} options
+ * @param {String} options.uid - The user id.
+ * @param {String} options.rid - The password reset id.
+ * @param {Object} [options.user] - The user performing the request.
+ */
+Users.prototype.removeResetPassword = async function ({ uid, rid, user }) {
+  return this.remove({ path: `${uid}/pwd_reset/${rid}`, user });
+};
+
 export default Users;
