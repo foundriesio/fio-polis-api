@@ -179,6 +179,25 @@ Users.prototype.resetPassword = async function ({ uid, user }) {
 };
 
 /**
+ * Create a password reset link for a user.
+ * @param {Object} options
+ * @param {String} options.rid - The reset password uid.
+ * @param {String} [options.uid] - The user id.
+ * @param {Object} [options.user] - The user performing the request.
+ */
+Users.prototype.findResetPassword = async function ({ rid, uid, user }) {
+  let path;
+
+  if (uid) {
+    path = `${uid}/pwd_reset/${rid}`;
+  } else {
+    path = `pwd_reset/${rid}`;
+  }
+
+  return this.find({ path, user });
+};
+
+/**
  * Update a password reset for a user.
  * @param {Object} options
  * @param {String} options.uid - The user id.
