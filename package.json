@@ -1,6 +1,6 @@
 {
   "name": "@foundriesio/polis-api",
-  "version": "1.11.3",
+  "version": "1.11.4",
   "private": false,
   "description": "Polis API wrapper",
   "main": "dist/main.js",
