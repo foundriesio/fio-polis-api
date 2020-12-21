@@ -5,7 +5,6 @@ Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
 You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0
 */
-import url from 'url';
 
 import createResponse from './response';
 import Polis from './polis';
@@ -13,55 +12,109 @@ import Polis from './polis';
 const membersPath = '/members';
 
 export class Members extends Polis {
-  constructor(baseUrl) {
-    const uri = new url.URL('/orgs/', baseUrl);
-    super(uri.href);
+  constructor(address) {
+    super(address);
+    this.basePath = '/orgs/';
   }
 }
 
-Members.prototype.find = async function ({ user, oid, query }) {
+/**
+ * Find all members of a factory.
+ * @param {Object} data
+ * @param {String} data.oid - The factory/org id.
+ * @param {Object} [data.query] - Query object for the request.
+ * @param {Object} [data.options] - Opitonal request configurations.
+ * @returns {Promise<Array>}
+ */
+Members.prototype.find = async function ({ oid, query, options }) {
   return createResponse(
-    this.get(`${oid}/${membersPath}`, query, await this.prepare(user))
+    this.get({ path: `${oid}/${membersPath}`, query, options })
   );
 };
 
-Members.prototype.findById = async function ({ user, oid, uid, query }) {
+/**
+ * Find a member of a factory.
+ * @param {Object} data
+ * @param {String} data.oid - The factory/org id.
+ * @param {String} data.uid - The user id.
+ * @param {Object} [data.query] - Query object for the request.
+ * @param {Object} [data.options] - Opitonal request configurations.
+ * @returns {Promise<Array>}
+ */
+Members.prototype.findById = async function ({ oid, uid, query, options }) {
   return createResponse(
-    this.get(`${oid}/${membersPath}/${uid}`, query, await this.prepare(user))
+    this.get({ path: `${oid}/${membersPath}/${uid}`, query, options })
   );
 };
 
-Members.prototype.add = async function ({ user, oid, uid, query, data }) {
+/**
+ * Add a member to a factory.
+ * @param {Object} data
+ * @param {String} data.oid - The factory/org id.
+ * @param {String} data.uid - The user id.
+ * @param {String} data.data - The payload to send.
+ * @param {Object} [data.query] - Query object for the request.
+ * @param {Object} [data.options] - Opitonal request configurations.
+ * @returns {Promise<Array>}
+ */
+Members.prototype.add = async function ({ oid, uid, data, query, options }) {
   return createResponse(
-    this.post(
-      data,
-      `${oid}/${membersPath}/${uid}`,
+    this.post({
+      path: `${oid}/${membersPath}/${uid}`,
+      body: data,
       query,
-      await this.prepare(user, true)
-    )
+      options,
+    })
   );
 };
 
-Members.prototype.remove = async function ({ user, oid, uid, query }) {
+/**
+ * Remove a member from a factory.
+ * @param {Object} data
+ * @param {String} data.oid - The factory/org id.
+ * @param {String} data.uid - The user id.
+ * @param {Object} [data.query] - Query object for the request.
+ * @param {Object} [data.options] - Opitonal request configurations.
+ * @returns {Promise<Array>}
+ */
+Members.prototype.remove = async function ({ oid, uid, query, options }) {
   return createResponse(
-    this.delete(`${oid}/${membersPath}/${uid}`, query, await this.prepare(user))
+    this.delete({ path: `${oid}/${membersPath}/${uid}`, query, options })
   );
 };
 
-Members.prototype.removeAll = async function ({ user, oid, query }) {
+/**
+ * Remove all members from a factory.
+ * @param {Object} data
+ * @param {String} data.oid - The factory/org id.
+ * @param {Object} [data.query] - Query object for the request.
+ * @param {Object} [data.options] - Opitonal request configurations.
+ * @returns {Promise<Array>}
+ */
+Members.prototype.removeAll = async function ({ oid, query, options }) {
   return createResponse(
-    this.delete(`${oid}/${membersPath}`, query, await this.prepare(user))
+    this.delete({ path: `${oid}/${membersPath}`, query, options })
   );
 };
 
-Members.prototype.update = async function ({ user, oid, mid, data, query }) {
+/**
+ * Find all members of a factory.
+ * @param {Object} data
+ * @param {String} data.oid - The factory/org id.
+ * @param {String} data.mid - The member id.
+ * @param {String} data.data - The payload to send.
+ * @param {Object} [data.query] - Query object for the request.
+ * @param {Object} [data.options] - Opitonal request configurations.
+ * @returns {Promise<Array>}
+ */
+Members.prototype.update = async function ({ oid, mid, data, query, options }) {
   return createResponse(
-    this.patch(
-      data,
-      `${oid}/${membersPath}/${mid}`,
+    this.patch({
+      path: `${oid}/${membersPath}/${mid}`,
+      body: data,
       query,
-      await this.prepare(user, true)
-    )
+      options,
+    })
   );
 };
 

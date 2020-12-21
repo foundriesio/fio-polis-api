@@ -5,187 +5,236 @@ Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
 You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0
 */
-import url from 'url';
-
 import Polis from './polis';
 
 export class Users extends Polis {
-  constructor(baseUrl) {
-    const uri = new url.URL('/users/', baseUrl);
-    super(uri.href);
+  constructor(address) {
+    super(address);
+    this.basePath = '/users/';
   }
 }
 
 /**
  * Retrieve all api tokens of a user.
- * @param {Object} options
- * @param {String} options.uid - The user id.
- * @param {Object} options.query - Query object for the request.
- * @param {Object} options.user - The user performing the request.
+ * @param {Object} data
+ * @param {String} data.uid - The user id.
+ * @param {Object} data.query - Query object for the request.
+ * @param {Object} [data.options] - Opitonal request configurations.
+ * @returns {Promise<Array>}
  */
-Users.prototype.findApiTokens = async function ({ uid, query, user }) {
-  return this.find({ path: `${uid}/api_tokens/`, query, user });
+Users.prototype.findApiTokens = async function ({ uid, query, options }) {
+  return this.find({ path: `${uid}/api_tokens/`, query, options });
 };
 
 /**
  * Retrieve all api tokens of a user.
- * @param {Object} options
- * @param {String} options.uid - The user id.
- * @param {String} options.tid - The token id.
- * @param {Object} options.query - Query object for the request.
- * @param {Object} options.user - The user performing the request.
+ * @param {Object} data
+ * @param {String} data.uid - The user id.
+ * @param {String} data.tid - The token id.
+ * @param {Object} [data.query] - Query object for the request.
+ * @param {Object} [data.options] - Opitonal request configurations.
+ * @returns {Promise<Array>}
  */
-Users.prototype.findApiTokenById = async function ({ uid, tid, query, user }) {
-  return this.find({ path: `${uid}/api_tokens/${tid}`, query, user });
+Users.prototype.findApiTokenById = async function ({
+  uid,
+  tid,
+  query,
+  options,
+}) {
+  return this.find({ path: `${uid}/api_tokens/${tid}`, query, options });
 };
 
 /**
  * Create a new api token for a user.
- * @param {Object} options
- * @param {String} options.uid - The user id.
- * @param {Object} options.data - The payload to send.
- * @param {Object} options.query - Query object for the request.
- * @param {Object} options.user - The user performing the request.
+ * @param {Object} data
+ * @param {String} data.uid - The user id.
+ * @param {Object} data.data - The payload to send.
+ * @param {Object} [data.query] - Query object for the request.
+ * @param {Object} [data.options] - Opitonal request configurations.
+ * @returns {Promise<Array>}
  */
-Users.prototype.createApiToken = async function ({ uid, data, query, user }) {
-  return this.create({ path: `${uid}/api_tokens/`, data, query, user });
+Users.prototype.createApiToken = async function ({
+  uid,
+  data,
+  query,
+  options,
+}) {
+  return this.create({ path: `${uid}/api_tokens/`, data, query, options });
 };
 
 /**
  * Update an existing api token.
- * @param {Object} options
- * @param {String} options.uid - The user id.
- * @param {String} options.tid - The token id.
- * @param {Object} options.data - The payload to send.
- * @param {Object} options.query - Query object for the request.
- * @param {Object} options.user - The user performing the request.
+ * @param {Object} data
+ * @param {String} data.uid - The user id.
+ * @param {String} data.tid - The token id.
+ * @param {Object} data.data - The payload to send.
+ * @param {Object} [data.query] - Query object for the request.
+ * @param {Object} [data.options] - Opitonal request configurations.
+ * @returns {Promise<Array>}
  */
 Users.prototype.updateApiToken = async function ({
   uid,
   tid,
   data,
   query,
-  user,
+  options,
 }) {
-  return this.update({ path: `${uid}/api_tokens/${tid}`, data, query, user });
+  return this.update({
+    path: `${uid}/api_tokens/${tid}`,
+    data,
+    query,
+    options,
+  });
 };
 
 /**
  * Delete an api token.
- * @param {Object} options
- * @param {String} options.uid - The user id.
- * @param {String} options.tid - The token id.
- * @param {Object} options.query - Query object for the request.
- * @param {Object} options.user - The user performing the request.
+ * @param {Object} data
+ * @param {String} data.uid - The user id.
+ * @param {String} data.tid - The token id.
+ * @param {Object} [data.query] - Query object for the request.
+ * @param {Object} [data.options] - Opitonal request configurations.
+ * @returns {Promise<Array>}
  */
-Users.prototype.deleteApiToken = async function ({ uid, tid, query, user }) {
-  return this.remove({ path: `${uid}/api_tokens/${tid}`, query, user });
+Users.prototype.deleteApiToken = async function ({ uid, tid, query, options }) {
+  return this.remove({ path: `${uid}/api_tokens/${tid}`, query, options });
 };
 
 /**
  * Retrieve all client credentials of a user.
- * @param {Object} options
- * @param {String} options.uid - The user id.
- * @param {Object} options.query - Query object for the request.
- * @param {Object} options.user - The user performing the request.
+ * @param {Object} data
+ * @param {String} data.uid - The user id.
+ * @param {Object} [data.query] - Query object for the request.
+ * @param {Object} [data.options] - Opitonal request configurations.
+ * @returns {Promise<Array>}
  */
-Users.prototype.findClientCredentials = async function ({ uid, query, user }) {
-  return this.find({ path: `${uid}/client_credentials/`, query, user });
+Users.prototype.findClientCredentials = async function ({
+  uid,
+  query,
+  options,
+}) {
+  return this.find({ path: `${uid}/client_credentials/`, query, options });
 };
 
 /**
  * Retrieve a client credentials of a user by its id.
- * @param {Object} options
- * @param {String} options.uid - The user id.
- * @param {String} options.cid - The credentials id.
- * @param {Object} options.query - Query object for the request.
- * @param {Object} options.user - The user performing the request.
+ * @param {Object} data
+ * @param {String} data.uid - The user id.
+ * @param {String} data.cid - The credentials id.
+ * @param {Object} [data.query] - Query object for the request.
+ * @param {Object} [data.options] - Opitonal request configurations.
+ * @returns {Promise<Array>}
  */
 Users.prototype.findClientCredentialsById = async function ({
   uid,
   cid,
   query,
-  user,
+  options,
 }) {
-  return this.find({ path: `${uid}/client_credentials/${cid}`, query, user });
+  return this.find({
+    path: `${uid}/client_credentials/${cid}`,
+    query,
+    options,
+  });
 };
 
 /**
  * Create a new client credentials for a user.
- * @param {Object} options
- * @param {String} options.uid - The user id.
- * @param {Object} options.data - The payload to send.
- * @param {Object} options.query - Query object for the request.
- * @param {Object} options.user - The user performing the request.
+ * @param {Object} data
+ * @param {String} data.uid - The user id.
+ * @param {Object} data.data - The payload to send.
+ * @param {Object} [data.query] - Query object for the request.
+ * @param {Object} [data.options] - Opitonal request configurations.
+ * @returns {Promise<Array>}
  */
 Users.prototype.createClientCredentials = async function ({
   uid,
   data,
   query,
-  user,
+  options,
 }) {
-  return this.create({ path: `${uid}/client_credentials/`, data, query, user });
+  return this.create({
+    path: `${uid}/client_credentials/`,
+    data,
+    query,
+    options,
+  });
 };
 
 /**
  * Update a client credentials of a user by its id.
- * @param {Object} options
- * @param {String} options.uid - The user id.
- * @param {String} options.cid - The credentials id.
- * @param {Object} options.data - The payload to send.
- * @param {Object} options.query - Query object for the request.
- * @param {Object} options.user - The user performing the request.
+ * @param {Object} data
+ * @param {String} data.uid - The user id.
+ * @param {String} data.cid - The credentials id.
+ * @param {Object} data.data - The payload to send.
+ * @param {Object} [data.query] - Query object for the request.
+ * @param {Object} [data.options] - Opitonal request configurations.
+ * @returns {Promise<Array>}
  */
 Users.prototype.updateClientCredentials = async function ({
   uid,
   cid,
   data,
   query,
-  user,
+  options,
 }) {
   return this.update({
     path: `${uid}/client_credentials/${cid}`,
     data,
     query,
-    user,
+    options,
   });
 };
 
 /**
  * Remove a client credentials of a user by its id.
- * @param {Object} options
- * @param {String} options.uid - The user id.
- * @param {String} options.cid - The credentials id.
- * @param {Object} options.query - Query object for the request.
- * @param {Object} options.user - The user performing the request.
+ * @param {Object} data
+ * @param {String} data.uid - The user id.
+ * @param {String} data.cid - The credentials id.
+ * @param {Object} [data.query] - Query object for the request.
+ * @param {Object} [data.options] - Opitonal request configurations.
+ * @returns {Promise<Array>}
  */
 Users.prototype.deleteClientCredentials = async function ({
   uid,
   cid,
   query,
-  user,
+  options,
 }) {
-  return this.remove({ path: `${uid}/client_credentials/${cid}`, query, user });
+  return this.remove({
+    path: `${uid}/client_credentials/${cid}`,
+    query,
+    options,
+  });
 };
 
 /**
  * Create a password reset link for a user.
- * @param {Object} options
- * @param {String} options.uid - The user id.
- * @param {Object} [options.user] - The user performing the request.
+ * @param {Object} data
+ * @param {String} data.uid - The user id.
+ * @param {Object} [data.query] - Query object for the request.
+ * @param {Object} [data.options] - Opitonal request configurations.
+ * @returns {Promise<Array>}
  */
-Users.prototype.resetPassword = async function ({ uid, user }) {
-  return this.create({ path: `${uid}/pwd_reset/`, user });
+Users.prototype.resetPassword = async function ({ uid, query, options }) {
+  return this.create({ path: `${uid}/pwd_reset/`, query, options });
 };
 
 /**
  * Create a password reset link for a user.
- * @param {Object} options
- * @param {String} options.rid - The reset password uid.
- * @param {String} [options.uid] - The user id.
- * @param {Object} [options.user] - The user performing the request.
+ * @param {Object} data
+ * @param {String} data.rid - The reset password uid.
+ * @param {String} [data.uid] - The user id.
+ * @param {Object} [data.query] - Query object for the request.
+ * @param {Object} [data.options] - Opitonal request configurations.
+ * @returns {Promise<Array>}
  */
-Users.prototype.findResetPassword = async function ({ rid, uid, user }) {
+Users.prototype.findResetPassword = async function ({
+  rid,
+  uid,
+  query,
+  options,
+}) {
   let path;
 
   if (uid) {
@@ -194,35 +243,45 @@ Users.prototype.findResetPassword = async function ({ rid, uid, user }) {
     path = `pwd_reset/${rid}`;
   }
 
-  return this.find({ path, user });
+  return this.find({ path, query, options });
 };
 
 /**
  * Update a password reset for a user.
- * @param {Object} options
- * @param {String} options.uid - The user id.
- * @param {String} options.rid - The password reset id.
- * @param {Object} options.data - The data to send.
- * @param {Object} [options.user] - The user performing the request.
+ * @param {Object} data
+ * @param {String} data.uid - The user id.
+ * @param {String} data.rid - The password reset id.
+ * @param {Object} data.data - The data to send.
+ * @param {Object} [data.query] - Query object for the request.
+ * @param {Object} [data.options] - Opitonal request configurations.
+ * @returns {Promise<Array>}
  */
 Users.prototype.updateResetPassword = async function ({
   uid,
   rid,
-  user,
   data,
+  query,
+  options,
 }) {
-  return this.update({ path: `${uid}/pwd_reset/${rid}`, data, user });
+  return this.update({ path: `${uid}/pwd_reset/${rid}`, data, query, options });
 };
 
 /**
  * Remove a password reset for a user.
- * @param {Object} options
- * @param {String} options.uid - The user id.
- * @param {String} options.rid - The password reset id.
- * @param {Object} [options.user] - The user performing the request.
+ * @param {Object} data
+ * @param {String} data.uid - The user id.
+ * @param {String} data.rid - The password reset id.
+ * @param {Object} [data.query] - Query object for the request.
+ * @param {Object} [data.options] - Opitonal request configurations.
+ * @returns {Promise<Array>}
  */
-Users.prototype.removeResetPassword = async function ({ uid, rid, user }) {
-  return this.remove({ path: `${uid}/pwd_reset/${rid}`, user });
+Users.prototype.removeResetPassword = async function ({
+  uid,
+  rid,
+  query,
+  options,
+}) {
+  return this.remove({ path: `${uid}/pwd_reset/${rid}`, query, options });
 };
 
 export default Users;
