@@ -50,12 +50,12 @@
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-promise": "^4.2.1",
     "eslint-plugin-security": "^1.4.0",
-    "husky": "^4.3.6",
+    "husky": "^4.3.7",
     "lint-staged": "^10.5.3",
     "prettier": "^2.2.1",
     "rimraf": "^3.0.2",
     "webpack": "^4.44.2",
-    "webpack-cli": "^4.2.0"
+    "webpack-cli": "^4.3.1"
   },
   "dependencies": {
     "bluebird": "^3.7.2",
