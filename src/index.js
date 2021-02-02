@@ -6,13 +6,13 @@ you may not use this file except in compliance with the License.
 You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0
 */
 
-export * from './auth';
-export * from './billing';
-export * from './device-authorization';
-export * from './email-verify';
-export * from './factories';
-export * from './invites';
-export * from './members';
-export * from './response';
-export * from './subscriptions';
-export * from './users';
+export * from './auth.js';
+export * from './billing.js';
+export * from './device-authorization.js';
+export * from './email-verify.js';
+export * from './factories.js';
+export * from './invites.js';
+export * from './members.js';
+export * from './response.js';
+export * from './subscriptions.js';
+export * from './users.js';

@@ -6,8 +6,8 @@ you may not use this file except in compliance with the License.
 You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0
 */
 
-import createResponse from './response';
-import Remote from './remote';
+import createResponse from './response.js';
+import Remote from './remote.js';
 
 export class Polis extends Remote {
   constructor(address) {

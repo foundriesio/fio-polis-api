@@ -5,8 +5,8 @@ Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
 You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0
 */
-import createResponse from './response';
-import Polis from './polis';
+import createResponse from './response.js';
+import Polis from './polis.js';
 
 export class EmailVerify extends Polis {
   constructor(address) {

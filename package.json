@@ -4,13 +4,14 @@
   "private": false,
   "description": "Polis API wrapper",
   "main": "dist/main.js",
+  "module": "src/index.js",
   "engines": {
-    "node": ">= 12"
+    "node": ">= 14"
   },
   "files": [
-    "dist/*.js",
     "LICENSE.md",
     "package-lock.json",
+    "dist/*.js",
     "src"
   ],
   "scripts": {
