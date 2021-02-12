@@ -25,7 +25,7 @@ export class EmailVerify extends Polis {
  * @return {Promise<Array>}
  */
 EmailVerify.prototype.update = async function ({ id, data, options }) {
-  return createResponse(this.patch({ path: id, data, options }));
+  return createResponse(this.patch({ path: id, body: data, options }));
 };
 
 export default EmailVerify;
