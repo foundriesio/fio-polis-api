@@ -4,11 +4,11 @@
   "private": false,
   "description": "Polis API wrapper",
   "type": "module",
-  "main": "dist/main.js",
-  "module": "src/index.js",
+  "main": "./dist/main.cjs",
+  "module": "./src/index.js",
   "exports": {
     ".": {
-      "require": "./dist/main.js",
+      "require": "./dist/main.cjs",
       "default": "./src/index.js"
     }
   },
