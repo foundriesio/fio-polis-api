@@ -18,7 +18,7 @@
   "files": [
     "LICENSE.md",
     "package-lock.json",
-    "dist/*.js",
+    "dist",
     "src"
   ],
   "scripts": {
