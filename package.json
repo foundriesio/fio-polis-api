@@ -3,10 +3,17 @@
   "version": "2.2.1",
   "private": false,
   "description": "Polis API wrapper",
+  "type": "module",
   "main": "dist/main.js",
   "module": "src/index.js",
+  "exports": {
+    ".": {
+      "require": "./dist/main.js",
+      "default": "./src/index.js"
+    }
+  },
   "engines": {
-    "node": ">= 14"
+    "node": ">=14.0.0"
   },
   "files": [
     "LICENSE.md",
@@ -17,15 +24,18 @@
   "scripts": {
     "prebuild": "rimraf dist",
     "prepare": "npm run build",
-    "build": "NODE_ENV=production webpack --progress",
-    "build:test": "NODE_ENV=test webpack --display none",
+    "build": "NODE_ENV=production webpack --config webpack/webpack.config.js --progress",
+    "build:test": "NODE_ENV=test webpack --config webpack/webpack.config.js --display none",
     "lint": "prettier *.md *.js ./src/*.js ./src/**/*.js  --write",
     "pretest": "npm run build:test",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "lint-staged": {
-    "src/**/*.+(js|md|css|scss|yaml|json)": [
-      "eslint --config src/.eslintrc.json --fix",
+    "src/**/*.+(js)": [
+      "eslint --config ./src/.eslintrc.json --fix",
+      "prettier --write"
+    ],
+    "src/**/*.+(md|css|scss|yaml)": [
       "prettier --write"
     ]
   },
