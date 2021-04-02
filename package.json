@@ -24,7 +24,7 @@
   "scripts": {
     "prebuild": "rimraf dist",
     "prepare:dev": "husky install",
-    "prepare": "npm run build && husky install",
+    "prepare": "npm run build",
     "build": "NODE_ENV=production webpack --config webpack/webpack.config.js --progress",
     "build:test": "NODE_ENV=test webpack --config webpack/webpack.config.js --display none",
     "lint": "prettier *.md *.js ./src/*.js ./src/**/*.js  --write",
