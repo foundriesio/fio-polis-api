@@ -5,6 +5,7 @@ Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
 You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0
 */
+import createResponse from './response.js';
 import Polis from './polis.js';
 
 export class Users extends Polis {
@@ -282,6 +283,80 @@ Users.prototype.removeResetPassword = async function ({
   options,
 }) {
   return this.remove({ path: `${uid}/pwd_reset/${rid}`, query, options });
+};
+
+/**
+ * Initial setup of 2FA for a user.
+ * @param {Object} data
+ * @param {String} data.uid - The user id.
+ * @param {Object} [data.query] - Query object for the request.
+ * @param {Object} [data.options] - Opitonal request configurations.
+ * @returns {Promise<Object>}
+ */
+Users.prototype.setupTwoFactorAuth = async function ({ uid, query, options }) {
+  return createResponse(this.post({ path: `${uid}/2fa`, query, options }));
+};
+
+/**
+ * Complete setup of 2FA for a user.
+ * @param {Object} data
+ * @param {String} data.uid - The user id.
+ * @param {String} data.tid - The TOTP id.
+ * @param {String} data.token - The six-digit totp code.
+ * @param {Object} [data.query] - Query object for the request.
+ * @param {Object} [data.options] - Opitonal request configurations.
+ * @returns {Promise<Object>}
+ */
+Users.prototype.completeTwoFactorAuthSetup = async function ({
+  uid,
+  tid,
+  token,
+  query,
+  options,
+}) {
+  return createResponse(
+    this.put({ path: `${uid}/2fa/${tid}/`, body: { token }, query, options })
+  );
+};
+
+/**
+ * Verify a OTP code.
+ * @param {Object} data
+ * @param {String} data.uid - The user id.
+ * @param {String} data.tid - The TOTP id.
+ * @param {Object} data.token - The token to verify.
+ * @param {Object} [data.query] - Query object for the request.
+ * @param {Object} [data.options] - Opitonal request configurations.
+ * @returns {Promise<Object>}
+ */
+Users.prototype.verifyTwoFactorAuth = async function ({
+  uid,
+  tid,
+  token,
+  query,
+  options,
+}) {
+  return createResponse(
+    this.post({ path: `${uid}/2fa/${tid}/`, body: { token }, query, options })
+  );
+};
+
+/**
+ * Disable and remove 2FA for a user.
+ * @param {Object} data
+ * @param {String} data.uid - The user id.
+ * @param {String} data.tid - The TOTP id.
+ * @param {Object} [data.query] - Query object for the request.
+ * @param {Object} [data.options] - Opitonal request configurations.
+ * @returns {Promise<Object>}
+ */
+Users.prototype.disableTwoFactorAuth = async function ({
+  uid,
+  tid,
+  query,
+  options,
+}) {
+  return this.remove({ path: `${uid}/2fa/${tid}/`, query, options });
 };
 
 export default Users;
