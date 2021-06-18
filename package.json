@@ -52,7 +52,7 @@
   "homepage": "https://github.com/foundriesio/fio-polis-api#readme",
   "devDependencies": {
     "dotenv": "^10.0.0",
-    "eslint": "^7.28.0",
+    "eslint": "^7.29.0",
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-promise": "^5.1.0",
     "eslint-plugin-security": "^1.4.0",
