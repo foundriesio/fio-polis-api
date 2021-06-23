@@ -192,6 +192,34 @@ TeamMembers.prototype.create = async function ({
 };
 
 /**
+ * Add multiple team members.
+ *
+ * @param {Object} data
+ * @param {String} data.oid - The factory id.
+ * @param {String} data.tid - The team id.
+ * @param {Object} data.data - The data to send.
+ * @param {Object} [data.query] - Query object for the request.
+ * @param {Object} [data.options] - Extra options for the request.
+ * @returns {Promise<Array<Object>}
+ */
+TeamMembers.prototype.createMulti = async function ({
+  oid,
+  tid,
+  data,
+  query,
+  options,
+}) {
+  return createResponse(
+    this.post({
+      path: `${oid}/teams/${tid}/members`,
+      body: data,
+      query,
+      options,
+    })
+  );
+};
+
+/**
  * Update a team member.
  *
  * @param {Object} data
