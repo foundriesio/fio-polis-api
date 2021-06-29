@@ -159,6 +159,8 @@ export const createResponse = async (request) => {
     return response;
   }
 
+  console.log(response);
+
   const err = new HTTPError(response.statusText);
   err.status = response.status;
   err.error = error_status_map[response.status];
