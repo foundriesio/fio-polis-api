@@ -98,7 +98,7 @@ Members.prototype.removeAll = async function ({ oid, query, options }) {
 };
 
 /**
- * Find all members of a factory.
+ * Update a member of a factory.
  * @param {Object} data
  * @param {String} data.oid - The factory/org id.
  * @param {String} data.mid - The member id.
@@ -111,6 +111,26 @@ Members.prototype.update = async function ({ oid, mid, data, query, options }) {
   return createResponse(
     this.patch({
       path: `${oid}/${membersPath}/${mid}`,
+      body: data,
+      query,
+      options,
+    })
+  );
+};
+
+/**
+ * Update all members of a factory
+ * @param {Object} data
+ * @param {String} data.oid - The factory/org id.
+ * @param {String} data.data - The payload to send.
+ * @param {Object} [data.query] - Query object for the request.
+ * @param {Object} [data.options] - Opitonal request configurations.
+ * @returns {Promise<Array>}
+ */
+Members.prototype.updateAll = async function ({ oid, data, query, options }) {
+  return createResponse(
+    this.patch({
+      path: `${oid}/${membersPath}`,
       body: data,
       query,
       options,
